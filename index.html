@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Poultry Farm Templates</title>
+<meta name="description" content="Three landing page concepts for an egg-laying poultry farm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff7e3;--card:#fffdf6;--ink:#1c1606;--muted:#5d5236;--line:#ecdcae;--yolk:#ffc93c;
+  --display:"Archivo","Arial Black",system-ui,sans-serif;--body:"Manrope",system-ui,-apple-system,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--body)}
+.wrap{max-width:1120px;margin:0 auto;padding:clamp(40px,7vw,88px) max(16px,env(safe-area-inset-right,0px)) 48px max(16px,env(safe-area-inset-left,0px))}
+.k{font:700 13px var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font:900 clamp(44px,7vw,92px)/.95 var(--display);font-stretch:125%;text-transform:uppercase;letter-spacing:-.03em;margin:12px 0 16px;text-wrap:balance}
+.lead{font-size:18px;color:var(--muted);max-width:56ch;margin:0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+a.card{display:grid;gap:14px;align-content:start;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:26px;padding:22px;transition:transform .3s cubic-bezier(.3,1.5,.5,1),box-shadow .3s}
+a.card:hover{transform:translateY(-6px) rotate(-.6deg);box-shadow:0 26px 44px -28px rgba(28,22,6,.45)}
+a.card:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.sw{height:150px;border-radius:18px;position:relative;overflow:hidden}
+.sw i{position:absolute;width:46px;height:60px;border-radius:50%/60% 60% 40% 40%;bottom:22px}
+.n{font:600 13px var(--body);color:var(--muted)}
+.card h2{font:900 30px/1 var(--display);font-stretch:110%;text-transform:uppercase;margin:0;letter-spacing:-.01em}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.go{font-weight:700}
+.go::after{content:" →"}
+footer{margin-top:48px;font-size:13px;color:var(--muted)}
+@media (max-width:860px){.grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="k">Reference templates · egg-laying poultry farm</span>
+  <h1>Three directions for the website</h1>
+  <p class="lead">Each concept is a working landing page with a shop, subscriptions or wholesale enquiry. Open one, scroll through it, and tell us which feels right for your farm.</p>
+  <div class="grid">
+    <a class="card" href="golden-nest/">
+      <div class="sw" style="background:#ffc93c"><i style="left:22%;background:radial-gradient(circle at 35% 30%,#fff,#f1ebdd 60%,#cfc4ab)"></i><i style="left:42%;bottom:34px;background:radial-gradient(circle at 35% 30%,#e3a777,#c27a46 60%,#8a4f26)"></i><i style="left:62%;background:radial-gradient(circle at 35% 30%,#fbe7cc,#e5c39a 60%,#b98f62)"></i></div>
+      <span class="n">Concept 1</span><h2>Golden Nest</h2>
+      <p>Bold and premium. 3D eggs in a nest, an egg that cracks open as you scroll, reviews and an egg-carton cart.</p>
+      <span class="go">Open template</span>
+    </a>
+    <a class="card" href="greenfield/">
+      <div class="sw" style="background:linear-gradient(#ffd9a0,#fff2cf 55%,#8cc06a 56%,#5f9a48)"><i style="left:30%;background:#f8f4ea"></i><i style="left:55%;background:#c98a55"></i></div>
+      <span class="n">Concept 2</span><h2>Greenfield Layers</h2>
+      <p>Warm and farm-first. Illustrated farm with hens you can tap, a subscription planner and a bulk enquiry form.</p>
+      <span class="go">Open template</span>
+    </a>
+    <a class="card" href="sunrise-agro/">
+      <div class="sw" style="background:#f1ede1"><svg viewBox="0 0 300 150" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%"><path d="M0 95 C50 60 90 120 150 85 C210 50 250 110 300 80 L300 150 L0 150Z" fill="#fbf9f1"/></svg><i style="left:40%;bottom:70px;background:#f2b705"></i></div>
+      <span class="n">Concept 3</span><h2>Sunrise Agro Farms</h2>
+      <p>Clean and large-scale. A creamy wave that rises as you scroll, a 3D egg tray, grade pricing and wholesale quotes.</p>
+      <span class="go">Open template</span>
+    </a>
+  </div>
+  <footer>All brand names, prices and numbers are sample content for review.</footer>
+</div>
+</body>
+</html>

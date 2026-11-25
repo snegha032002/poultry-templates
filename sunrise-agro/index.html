@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;padding:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Sunrise Agro Farms</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Caveat+Brush&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: one warm, creamy look (single theme). Pinned hero with a 3D 30-egg tray; a liquid "fresh egg" wave rises over it on scroll and becomes the page. Condensed caps + brush-script accents, mono data in thin yolk-ruled tables */
+:root{
+  --cream:#f1ede1; --milk:#fbf9f1; --milk-2:#ece5cf; --yolk:#f2b705; --yolk-soft:#f8dc7a; --ink:#151410; --muted:#6c675a; --line:#e2cf86;
+  --accent:#f2b705; --surface:#fffdf6;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --script:"Caveat Brush","Segoe Print","Comic Sans MS",cursive;
+  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--milk);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--cream)}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:.92;text-transform:uppercase;text-wrap:balance;letter-spacing:.005em}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:clamp(64px,9vw,120px)}
+.script{font-family:var(--script);text-transform:none;font-weight:400;letter-spacing:0}
+.label{font:600 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.sh{display:grid;gap:10px;max-width:720px;margin-bottom:44px}
+.sh h2{font-size:clamp(46px,7vw,92px);font-weight:900}
+.sh h2 .script{color:var(--yolk);font-size:.62em;display:inline-block;transform:rotate(-4deg);margin-left:.1em}
+.sh p{color:var(--muted);font-size:17px;max-width:56ch}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:14px 24px;font:700 15px var(--body);text-decoration:none;border:0;cursor:pointer;transition:transform .2s cubic-bezier(.3,1.6,.5,1)}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.btn-ink{background:var(--ink);color:var(--yolk)}
+.btn-line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* ---------- header ---------- */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:25;background:var(--cream)}
+.nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;padding-block:14px}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.nav ul a{text-decoration:none;color:var(--muted)}
+.nav ul a:hover{color:var(--ink)}
+.logo{text-decoration:none;display:flex;align-items:baseline;gap:6px;white-space:nowrap}
+.logo .script{font-size:30px;line-height:1;color:var(--ink)}
+.logo b{font:900 15px var(--display);letter-spacing:.14em;text-transform:uppercase}
+.logo i{display:inline-block;width:12px;height:15px;background:var(--yolk);border-radius:50%/60% 60% 40% 40%;transform:translateY(1px)}
+.nav-cta{justify-self:end;display:flex;gap:10px}
+@media (max-width:1000px){.nav ul{display:none}.nav{grid-template-columns:auto 1fr}}
+@media (max-width:560px){.nav .btn-line{display:none}}
+
+/* ---------- pinned hero + liquid wave ---------- */
+.pin{height:190vh;position:relative;background:var(--milk)}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--cream)}
+.hero-grid{position:relative;z-index:2;height:100%;display:grid;grid-template-columns:1fr 1.1fr;align-items:center;gap:20px;padding-bottom:12vh}
+.hero-copy{will-change:transform,opacity}
+.hero h1{font-size:clamp(64px,10.5vw,158px);font-weight:900;letter-spacing:-.005em}
+.hero h1 .ghost{color:transparent;-webkit-text-stroke:2px var(--ink)}
+.hero .brush{font-family:var(--script);font-size:clamp(38px,5vw,70px);line-height:.9;display:block;transform:rotate(-5deg);margin:-.15em 0 .3em .6em;color:var(--ink)}
+.hero .brush em{font-style:normal;color:var(--yolk)}
+.hero p.lead{font-size:17px;color:var(--muted);max-width:44ch}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.tray{position:relative;aspect-ratio:1/1;width:100%;max-width:100%;will-change:transform;cursor:pointer}
+.tray canvas{position:absolute;inset:0;width:100%!important;height:100%!important}
+.tray .fallback{position:absolute;inset:8%;display:grid;grid-template-columns:repeat(6,1fr);gap:4%;align-content:center;background:#e2d3b5;border-radius:24px;padding:6%}
+.tray.live .fallback{display:none}
+.tray .fallback i{aspect-ratio:3/4;border-radius:50%/60% 60% 40% 40%;background:radial-gradient(circle at 35% 30%,#fff,#efe8d8 60%,#cdbf9f)}
+.tray .fallback i:nth-child(4n){background:radial-gradient(circle at 35% 30%,#e3a777,#c27a46 60%,#8a4f26)}
+.tray-note{position:absolute;right:4%;bottom:12%;font-family:var(--script);font-size:26px;transform:rotate(-6deg);line-height:1;text-align:right;pointer-events:none}
+.tray-note small{display:block;font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.wave{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}
+.after{position:absolute;inset:0;z-index:4;display:grid;place-content:center;text-align:center;opacity:0;pointer-events:none;padding-inline:16px}
+.after .script{font-size:clamp(30px,4vw,52px);color:var(--yolk);transform:rotate(-4deg);display:block;line-height:1}
+.after h2{font-size:clamp(56px,9vw,130px);font-weight:900}
+.cue{position:absolute;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:4;font:600 11px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:grid;justify-items:center;gap:6px}
+.cue::after{content:"";width:2px;height:28px;background:var(--ink);animation:cue 1.6s ease-in-out infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(0)}}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr;align-content:center;padding-bottom:16vh;gap:0}.tray{max-width:min(420px,46vh);margin:-10px auto 0;order:-1}.tray-note{display:none}.hero h1{font-size:clamp(54px,15vw,96px)}}
+
+/* ---------- inside every egg ---------- */
+.energy{background:var(--milk);padding-top:clamp(24px,4vw,48px)}
+.en-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end}
+.en h2{font-size:clamp(46px,6.4vw,86px);font-weight:900}
+.en .val{font:900 clamp(54px,7.4vw,104px) var(--display);color:var(--yolk);line-height:.9;display:flex;flex-wrap:wrap;align-items:baseline;gap:.15em}
+.en .val .script{font-size:.42em;color:var(--ink)}
+.en .val .dot{color:var(--ink);font-size:.5em}
+.nut{border:1.5px solid var(--line);border-radius:4px;font:500 13px var(--mono);letter-spacing:.06em;text-transform:uppercase;justify-self:end;width:min(100%,360px)}
+.nut div{display:flex;justify-content:space-between;gap:16px;padding:11px 16px;border-bottom:1.5px solid var(--line)}
+.nut div:last-child{border-bottom:0}
+.nut b{font-weight:600}
+.pills{position:relative;height:clamp(300px,34vw,400px);margin-top:44px}
+.pill{position:absolute;border:2px solid var(--yolk);background:var(--milk);border-radius:999px;padding:12px 22px;font:800 clamp(16px,1.7vw,22px) var(--display);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;transform:translate(-50%,-50%) rotate(var(--r));animation:bob 4.5s ease-in-out infinite}
+.pill:nth-child(3n){animation-delay:-1.5s}.pill:nth-child(3n+1){animation-delay:-3s}
+@keyframes bob{50%{translate:0 -7px}}
+.pill.round{width:clamp(52px,5vw,66px);height:clamp(52px,5vw,66px);padding:0;display:grid;place-items:center;font:400 clamp(17px,1.8vw,22px) var(--script);text-transform:none}
+.pill b{font-family:var(--mono);font-weight:600;font-size:.62em;color:var(--muted);margin-left:8px;letter-spacing:0}
+@media (max-width:860px){.en-grid{grid-template-columns:1fr}.nut{justify-self:start}}
+@media (max-width:600px){.pill{padding:9px 14px}.pill b{display:none}}
+
+/* ---------- today at the farm ---------- */
+.today-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:stretch}
+.board{background:var(--surface);border:1.5px solid var(--line);border-radius:28px;padding:26px;display:grid;gap:18px;align-content:start}
+.board-top{display:flex;justify-content:space-between;align-items:center;font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.live{display:inline-flex;align-items:center;gap:8px}
+.live::before{content:"";width:8px;height:8px;border-radius:50%;background:#2f9e5b;box-shadow:0 0 0 4px rgba(47,158,91,.2);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(47,158,91,0)}}
+.big-stat span{font-family:var(--script);font-size:24px;display:block;line-height:1}
+.big-stat b{font:900 clamp(56px,6vw,80px) var(--display);line-height:.95;font-variant-numeric:tabular-nums}
+.bar{height:10px;border-radius:99px;background:var(--milk-2);overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;background:var(--yolk);border-radius:99px;transition:width .6s}
+.bar-cap{display:flex;justify-content:space-between;font:500 12px var(--mono);color:var(--muted);margin-top:6px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;border:1.5px solid var(--line);border-radius:4px}
+.tiles div{padding:12px 14px;display:grid;border-bottom:1.5px solid var(--line)}
+.tiles div:nth-child(odd){border-right:1.5px solid var(--line)}
+.tiles div:nth-last-child(-n+2){border-bottom:0}
+.tiles span{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tiles b{font:600 20px var(--mono)}
+.board small{font-size:12px;color:var(--muted)}
+.belt{background:var(--surface);border:1.5px solid var(--line);border-radius:28px;overflow:hidden;display:grid;grid-template-rows:auto 1fr}
+.belt-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:22px 24px 0}
+.belt-top h3{font-size:40px;font-weight:900}
+.belt-top h3 .script{color:var(--yolk);font-size:.7em}
+.belt-top p{font:500 12px var(--mono);color:var(--muted);margin-top:6px;letter-spacing:.04em}
+.belt-count{text-align:right;font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);flex:none}
+.belt-count b{display:block;font:900 34px var(--display);color:var(--ink)}
+.belt canvas{display:block;width:100%;height:100%;min-height:200px}
+@media (max-width:900px){.today-grid{grid-template-columns:1fr}}
+
+/* ---------- capacity ---------- */
+.cap{display:grid;grid-template-columns:repeat(4,1fr);border-block:1.5px solid var(--line)}
+.cap div{padding:28px 20px;display:grid;gap:4px;border-right:1.5px solid var(--line)}
+.cap div:last-child{border-right:0}
+.cap b{font:900 clamp(48px,5.4vw,76px) var(--display);line-height:.9}
+.cap span{font-family:var(--script);font-size:22px;color:var(--muted);line-height:1.1}
+@media (max-width:820px){.cap{grid-template-columns:1fr 1fr}.cap div:nth-child(2){border-right:0}.cap div:nth-child(-n+2){border-bottom:1.5px solid var(--line)}}
+
+/* ---------- grades ---------- */
+.toggle{display:inline-flex;border:1.5px solid var(--ink);border-radius:999px;padding:4px;margin-bottom:20px;flex-wrap:wrap}
+.toggle button{border:0;background:transparent;color:var(--ink);padding:9px 18px;border-radius:999px;font:700 14px var(--body);cursor:pointer}
+.toggle button[aria-pressed="true"]{background:var(--ink);color:var(--yolk)}
+.tbl-wrap{overflow-x:auto;border:1.5px solid var(--line);border-radius:4px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;min-width:640px}
+th,td{padding:16px 18px;text-align:left;border-bottom:1.5px solid var(--line);font-size:15px}
+th{font:600 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+td.g{font:800 22px var(--display);text-transform:uppercase;letter-spacing:.02em}
+tr:last-child td{border-bottom:0}
+tbody tr{transition:background .2s}
+tbody tr:hover{background:#fff4cf}
+.gicon{display:inline-block;vertical-align:middle;margin-right:12px}
+.tbl-note{margin-top:14px;color:var(--muted);font-size:14px}
+
+/* ---------- trace ---------- */
+.trace{background:var(--cream)}
+.trace-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.code{display:flex;flex-wrap:wrap;gap:10px;margin-block:20px 0}
+.code div{display:grid;gap:6px;text-align:center}
+.code b{font:600 clamp(20px,2.6vw,28px) var(--mono);background:var(--surface);border:1.5px solid var(--line);border-radius:999px;padding:10px 18px}
+.code div:nth-child(2) b{border-color:var(--yolk);background:#fff4cf}
+.code span{font-family:var(--script);font-size:18px;color:var(--muted)}
+.tracer{background:var(--surface);border:1.5px solid var(--line);border-radius:28px;padding:26px;display:grid;gap:14px}
+.tracer h3{font-size:36px;font-weight:900}
+.tracer form{display:flex;gap:8px;flex-wrap:wrap}
+.tracer input{flex:1;min-width:0;font:600 16px var(--mono);padding:12px 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--milk);color:var(--ink);text-transform:uppercase}
+.result{display:grid;font-size:14px;border:1.5px solid var(--line);border-radius:4px}
+.result div{display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:1.5px solid var(--line)}
+.result div:last-child{border-bottom:0}
+.result div span:first-child{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.result div span:last-child{font-family:var(--mono);font-weight:600;text-align:right}
+@media (max-width:900px){.trace-grid{grid-template-columns:1fr}}
+
+/* ---------- process ---------- */
+.process{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.proc{display:grid;gap:10px;align-content:start;padding-top:18px;border-top:2px solid var(--ink)}
+.proc .n{font-family:var(--script);font-size:26px;color:var(--yolk);line-height:1}
+.proc h3{font-size:28px;font-weight:900}
+.proc p{font-size:14px;color:var(--muted)}
+.proc .spec{font:600 12px var(--mono);border:1.5px solid var(--yolk);border-radius:999px;padding:4px 12px;justify-self:start}
+@media (max-width:980px){.process{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.process{grid-template-columns:1fr}}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.panel{background:var(--surface);border:1.5px solid var(--line);border-radius:28px;padding:28px;display:grid;gap:16px;align-content:start}
+.panel h3{font-size:40px;font-weight:900}
+.certs{display:flex;flex-wrap:wrap;gap:10px}
+.certs span{border:2px solid var(--yolk);border-radius:999px;padding:10px 18px;font:800 18px var(--display);text-transform:uppercase;letter-spacing:.04em;transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.certs span:nth-child(odd){transform:rotate(-3deg)}.certs span:nth-child(even){transform:rotate(2deg)}
+.certs span:hover{transform:rotate(0) scale(1.05)}
+.areas{list-style:none;padding:0;margin:0;border:1.5px solid var(--line);border-radius:4px}
+.areas li{display:flex;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1.5px solid var(--line);font-size:15px}
+.areas li:last-child{border-bottom:0}
+.areas li span:last-child{font:500 13px var(--mono);color:var(--muted);text-align:right}
+@media (max-width:860px){.two{grid-template-columns:1fr}}
+
+/* ---------- quote (yolk wave) ---------- */
+.quote{background:var(--yolk);position:relative;margin-top:90px}
+.yolkwave{position:absolute;left:0;right:0;bottom:calc(100% - 2px);width:100%;height:110px;display:block}
+.quote-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}
+.quote h2{font-size:clamp(50px,7vw,96px);font-weight:900}
+.quote h2 .script{display:block;font-size:.5em;transform:rotate(-4deg);margin-top:.1em}
+.quote p.lead{margin-top:16px;font-size:17px;max-width:44ch}
+.quote ul{margin:22px 0 0;padding-left:20px;display:grid;gap:6px;font-weight:500}
+form.q{background:var(--milk);border-radius:28px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+form.q .full{grid-column:1/-1}
+form.q label{display:grid;gap:6px;font:600 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+form.q input,form.q select{font:500 15px var(--body);padding:12px 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);width:100%;text-transform:none;letter-spacing:0}
+form.q input[type=range]{padding:0;accent-color:var(--ink);background:transparent;border:0}
+.est{display:flex;justify-content:space-between;align-items:end;gap:12px;border:1.5px dashed var(--yolk);border-radius:18px;padding:14px 18px}
+.est b{font:900 36px var(--display);font-variant-numeric:tabular-nums}
+.sent{background:var(--milk);border-radius:28px;padding:28px;font-weight:600}
+@media (max-width:900px){.quote-grid{grid-template-columns:1fr}}
+@media (max-width:480px){form.q{grid-template-columns:1fr}}
+
+/* ---------- retail ---------- */
+.retail{background:var(--milk);padding-top:clamp(24px,4vw,48px)}
+.retail-in{background:var(--surface);border:1.5px solid var(--line);border-radius:36px;padding:clamp(24px,4vw,44px);display:grid;grid-template-columns:1.1fr repeat(3,1fr);gap:16px;align-items:stretch}
+.retail-in .intro{display:grid;gap:12px;align-content:center}
+.retail-in h2{font-size:clamp(40px,4.6vw,60px);font-weight:900}
+.retail-in h2 .script{color:var(--yolk);font-size:.6em;display:block;transform:rotate(-4deg)}
+.mini{background:var(--surface);border:1.5px solid var(--line);border-radius:24px;padding:20px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;transition:transform .3s cubic-bezier(.3,1.5,.5,1)}
+.mini:hover{transform:translateY(-5px) rotate(-1deg)}
+.mini svg{width:48px;height:62px;transition:transform .4s}
+.mini:hover svg{transform:rotate(-12deg)}
+.mini h3{font-size:26px;font-weight:900}
+.mini .p{font:600 20px var(--mono)}
+.mini button{background:var(--ink);color:var(--yolk);border:0;border-radius:999px;padding:11px;font:700 14px var(--body);cursor:pointer;margin-top:auto;align-self:stretch}
+@media (max-width:980px){.retail-in{grid-template-columns:1fr 1fr}.retail-in .intro{grid-column:1/-1}}
+@media (max-width:480px){.retail-in{grid-template-columns:1fr}}
+
+footer{background:var(--ink);color:var(--milk);padding-block:56px 28px;overflow:hidden}
+.bigword{position:relative;font:900 clamp(60px,19vw,250px) var(--display);text-transform:uppercase;line-height:.8;color:var(--yolk);white-space:nowrap}
+.bigword .script{position:absolute;right:2%;bottom:-.05em;font-size:.3em;color:var(--milk);transform:rotate(-6deg)}
+.fg{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:28px;margin-top:44px;font-size:14px;color:#c9c3b2}
+.fg h4{font:600 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--milk);margin:0 0 12px}
+.fg ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.fg a{text-decoration:none}
+.legal{margin-top:32px;padding-top:16px;border-top:1px solid #33312a;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:13px;color:#9d9784}
+@media (max-width:820px){.fg{grid-template-columns:1fr 1fr}}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,160%);background:var(--ink);color:var(--yolk);padding:12px 22px;border-radius:999px;font-weight:700;transition:transform .35s cubic-bezier(.3,1.5,.5,1);z-index:50;max-width:calc(100% - 32px);visibility:hidden}
+.toast.show{transform:translate(-50%,0);visibility:visible}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="egg" viewBox="0 0 100 130"><path d="M50 4 C78 4 96 52 96 82 C96 110 75 126 50 126 C25 126 4 110 4 82 C4 52 22 4 50 4Z"/></symbol>
+</defs></svg>
+
+<header>
+  <nav class="wrap nav" aria-label="Main">
+    <ul>
+      <li><a href="#retail">Shop</a></li>
+      <li><a href="#inside">Inside</a></li>
+      <li><a href="#pricing">Grades</a></li>
+      <li><a href="#quote">Wholesale</a></li>
+    </ul>
+    <a class="logo" href="#top"><span class="script">sunrise</span><i aria-hidden="true"></i><b>Agro Farms</b></a>
+    <div class="nav-cta"><a class="btn btn-line" href="#retail" style="padding:10px 18px">For homes</a><a class="btn btn-ink" href="#quote" style="padding:10px 18px">Wholesale price</a></div>
+  </nav>
+</header>
+
+<main id="top">
+  <div class="pin" id="pin">
+    <div class="stage hero" id="stage">
+      <div class="wrap hero-grid">
+        <div class="hero-copy" id="heroCopy">
+          <span class="label">Commercial layer farm · Namakkal, Tamil Nadu</span>
+          <h1>Eggs at<br><span class="ghost">farm</span> scale</h1>
+          <span class="brush">fresh <em>every</em> morning</span>
+          <p class="lead">1.2 lakh hens. 1.05 lakh eggs a day. Graded, dated and on its way to hotels, bakeries, shops and homes within 24 hours.</p>
+          <div class="ctas"><a class="btn btn-ink" href="#quote">Get wholesale price</a><a class="btn btn-line" href="#retail">Buy for your home</a></div>
+        </div>
+        <div class="tray" id="tray" role="img" aria-label="3D tray of 30 eggs">
+          <div class="fallback" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="tray-note">one tray, 30 eggs<small>Grade L · laid today</small></div>
+        </div>
+      </div>
+      <canvas class="wave" id="wave" aria-hidden="true"></canvas>
+      <div class="after" id="after" aria-hidden="true"><span class="script">from our sheds</span><h2>to your kitchen</h2></div>
+      <div class="cue" id="cue">Scroll</div>
+    </div>
+  </div>
+
+  <section class="retail" id="retail">
+    <div class="wrap">
+      <div class="retail-in">
+        <div class="intro"><span class="label">Order for home</span><h2>Fresh eggs <span class="script">at your door</span></h2><p style="color:var(--muted)">Home delivery in Namakkal, Salem, Erode and Coimbatore.</p></div>
+        <div class="mini"><svg viewBox="0 0 100 130" aria-hidden="true"><use href="#egg" fill="#f3eee2" stroke="#d6cdb8" stroke-width="3"/></svg><h3>White eggs · 12</h3><span class="p">₹80</span><button type="button" data-n="White eggs · 12">Add to cart</button></div>
+        <div class="mini"><svg viewBox="0 0 100 130" aria-hidden="true"><use href="#egg" fill="#c27a46"/></svg><h3>Brown eggs · 12</h3><span class="p">₹104</span><button type="button" data-n="Brown eggs · 12">Add to cart</button></div>
+        <div class="mini"><svg viewBox="0 0 100 130" aria-hidden="true"><use href="#egg" fill="#f3eee2" stroke="#d6cdb8" stroke-width="3"/></svg><h3>Farm tray · 30</h3><span class="p">₹195</span><button type="button" data-n="Farm tray · 30">Add to cart</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="energy" id="inside">
+    <div class="wrap">
+      <div class="en-grid en">
+        <div>
+          <span class="label">Inside every large egg (50 g)</span>
+          <h2>Energy value</h2>
+          <div class="val"><span>301</span><span class="script">kJ</span><span class="dot">•</span><span>72</span><span class="script">kcal</span></div>
+        </div>
+        <div class="nut">
+          <div><span>Protein</span><b>6.3 g</b></div>
+          <div><span>Fat</span><b>4.8 g</b></div>
+          <div><span>Carbohydrates</span><b>0.4 g</b></div>
+          <div><span>Shell checked</span><b>100% candled</b></div>
+        </div>
+      </div>
+      <div class="pills" id="pills" aria-label="Nutrients found in eggs">
+        <span class="pill" style="left:10%;top:24%;--r:-12deg">Protein<b>6.3 g</b></span>
+        <span class="pill round" style="left:25%;top:12%;--r:8deg">B12</span>
+        <span class="pill" style="left:37%;top:30%;--r:6deg">Choline</span>
+        <span class="pill round" style="left:50%;top:14%;--r:-10deg">D</span>
+        <span class="pill" style="left:63%;top:28%;--r:-5deg">Selenium</span>
+        <span class="pill" style="left:84%;top:20%;--r:14deg">Lutein</span>
+        <span class="pill round" style="left:14%;top:62%;--r:-6deg">B2</span>
+        <span class="pill" style="left:29%;top:72%;--r:9deg">Iron</span>
+        <span class="pill" style="left:46%;top:60%;--r:-14deg">Zinc</span>
+        <span class="pill" style="left:62%;top:74%;--r:4deg">Phosphorus</span>
+        <span class="pill round" style="left:78%;top:56%;--r:12deg">A</span>
+        <span class="pill" style="left:89%;top:78%;--r:-8deg">Omega-3</span>
+              </div>
+    </div>
+  </section>
+
+
+  <section id="capacity" style="padding-top:0">
+    <div class="wrap">
+      <div class="cap">
+        <div><b>1.2 L</b><span>laying hens</span></div>
+        <div><b>1.05 L</b><span>eggs every day</span></div>
+        <div><b>30,000</b><span>eggs graded an hour</span></div>
+        <div><b>14</b><span>cooled trucks</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" style="padding-top:0">
+    <div class="wrap">
+      <div class="sh"><span class="label">Grades &amp; pricing</span><h2>Sorted by weight <span class="script">priced by grade</span></h2><p>Every egg is weighed on our grading line, so every tray is even.</p></div>
+      <div class="toggle" role="group" aria-label="Price view"><button type="button" aria-pressed="true" data-v="tray">Per tray (30)</button><button type="button" aria-pressed="false" data-v="case">Per case (210)</button><button type="button" aria-pressed="false" data-v="100">Per 100 eggs</button></div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Grade</th><th>Weight per egg</th><th>Common use</th><th class="n" id="priceHead">Price per tray</th></tr></thead>
+          <tbody id="gradeRows"></tbody>
+        </table>
+      </div>
+      <p class="tbl-note">Wholesale rates follow the daily NECC Namakkal price. Prices shown are samples for this template.</p>
+    </div>
+  </section>
+
+
+
+  <section style="padding-top:0">
+    <div class="wrap two">
+      <div class="panel">
+        <span class="label">Certifications</span><h3>Ready for your auditors</h3>
+        <div class="certs"><span>FSSAI</span><span>ISO 22000</span><span>NECC member</span><span>Lab tested monthly</span><span>HACCP</span></div>
+      </div>
+      <div class="panel">
+        <span class="label">Delivery network</span><h3>Where we deliver</h3>
+        <ul class="areas">
+          <li><span>Namakkal, Salem, Erode</span><span>Same day</span></li>
+          <li><span>Coimbatore, Tiruppur, Karur</span><span>Next morning</span></li>
+          <li><span>Chennai, Madurai, Trichy</span><span>Next day</span></li>
+          <li><span>Kerala (Kochi, Palakkad)</span><span>1–2 days</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote" id="quote">
+    <svg class="yolkwave" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true"><path id="ywPath" fill="#f2b705" d="M0 60 C240 20 480 100 720 60 C960 20 1200 100 1440 60 L1440 110 L0 110Z"/></svg>
+    <div class="wrap quote-grid">
+      <div>
+        <span class="label" style="color:var(--ink)">Wholesale</span>
+        <h2>Get a price <span class="script">for your business</span></h2>
+        <p class="lead">Tell us your weekly need. Our sales team calls back within one working day with a rate and delivery plan.</p>
+        <ul><li>Daily or weekly standing orders</li><li>Credit terms for regular customers</li><li>Free replacement of breakage on delivery</li></ul>
+      </div>
+      <form class="q" id="qForm">
+        <label>Business name<input id="qBiz" required placeholder="e.g. Hotel Annapoorna"></label>
+        <label>Contact number<input id="qPhone" required inputmode="tel" placeholder="98xxxxxxxx"></label>
+        <label>Business type<select id="qType"><option>Hotel / restaurant</option><option>Bakery</option><option>Supermarket / retail</option><option>Caterer</option><option>Distributor</option></select></label>
+        <label>Grade<select id="qGrade"></select></label>
+        <label class="full">Trays per week: <span class="mono" id="qTraysLbl" style="color:var(--ink)">100</span><input type="range" id="qTrays" min="10" max="2000" step="10" value="100"></label>
+        <div class="est full"><div><div class="label">Estimated weekly value</div><b id="qEst">₹0</b></div><span style="font-size:13px;color:var(--muted)">Sample rate, final price on call</span></div>
+        <button class="btn btn-ink full" type="submit">Request quote</button>
+      </form>
+      <div class="sent" id="qSent" hidden>Thanks. Your request is in. Our sales team will call you within one working day.</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="bigword" aria-label="Sunrise Agro Farms">Sunrise<span class="script">agro farms</span></div>
+    <div class="fg">
+      <div><p>Survey No. 112, Tiruchengode Road, Namakkal, Tamil Nadu 637001<br>Sales: +91 99999 00000</p></div>
+      <div><h4>Business</h4><ul><li><a href="#quote">Wholesale enquiry</a></li><li><a href="#pricing">Grades &amp; pricing</a></li><li><a href="#capacity">Capacity</a></li></ul></div>
+      <div><h4>Farm</h4><ul><li><a href="#inside">Inside the egg</a></li><li><a href="#capacity">Our capacity</a></li></ul></div>
+      <div><h4>Homes</h4><ul><li><a href="#retail">Shop eggs</a></li><li><a href="#retail">Delivery areas</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Sunrise Agro Farms Pvt. Ltd.</span><span>Reference template · sample content</span></div>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+const inr=n=>"₹"+Math.round(n).toLocaleString("en-IN");
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2200)}
+
+/* ---------- pinned hero: scroll progress ---------- */
+const pin=$("#pin"),heroCopy=$("#heroCopy"),trayEl=$("#tray"),cue=$("#cue"),after=$("#after");
+let heroP=0;
+function heroProgress(){const r=pin.getBoundingClientRect();return clamp(-r.top/(r.height-innerHeight))}
+function heroUI(){heroCopy.style.transform=`translateY(${-heroP*90}px)`;heroCopy.style.opacity=String(clamp(1-heroP*1.4));
+  trayEl.style.transform=`translateY(${-heroP*140}px) scale(${1-heroP*.18}) rotate(${-heroP*8}deg)`;cue.style.opacity=String(clamp(1-heroP*4));const a=clamp((heroP-.72)/.2);after.style.opacity=String(a);after.style.transform=`translateY(${(1-a)*40}px)`}
+
+/* ---------- the liquid wave ---------- */
+(function(){
+  const cv=$("#wave"),ctx=cv.getContext("2d");let W=0,H=0,t=0,last=performance.now();
+  function size(){const d=Math.min(devicePixelRatio,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*d;cv.height=H*d;ctx.setTransform(d,0,0,d,0,0);if(still)draw()}
+  const crests=[{x:.12,w:.07,h:.9},{x:.38,w:.05,h:1.2},{x:.66,w:.08,h:.8},{x:.9,w:.05,h:1.1}];
+  const drops=Array.from({length:14},()=>({x:Math.random(),s:3+Math.random()*7,ph:Math.random()*6,v:.6+Math.random()*.8}));
+  function edge(x,base,amp,ph,p){
+    let y=base+Math.sin(x*.0055+t*.7+ph)*amp+Math.sin(x*.016-t*1.05+ph*2)*amp*.42+Math.sin(x*.041+t*1.6)*amp*.12;
+    const boost=Math.sin(Math.PI*clamp(p*1.15));
+    for(const c of crests){const cx=(c.x+Math.sin(t*.25+c.x*9)*.03)*W,d=(x-cx)/(c.w*W);y-=Math.exp(-d*d)*amp*2.6*c.h*(.35+boost)}
+    return y}
+  function layer(base,amp,ph,fill,p,shadow){
+    ctx.beginPath();ctx.moveTo(0,H+2);for(let x=0;x<=W+8;x+=8)ctx.lineTo(x,edge(x,base,amp,ph,p));ctx.lineTo(W,H+2);ctx.closePath();
+    ctx.save();if(shadow){ctx.shadowColor="rgba(80,60,10,.16)";ctx.shadowBlur=40;ctx.shadowOffsetY=-6}ctx.fillStyle=fill;ctx.fill();ctx.restore()}
+  function draw(){
+    if(!W||!H)return;
+    const p=heroP,base=H*(.9-p*1.12),amp=Math.max(10,H*.028)*(1+Math.sin(Math.PI*clamp(p))*1.2);
+    ctx.clearRect(0,0,W,H);
+    layer(base-18-amp*.6,amp*1.15,1.7,"#e9e1c8",p,false);
+    const g=ctx.createLinearGradient(0,base-amp*3,0,base+H*.4);g.addColorStop(0,"#fffef8");g.addColorStop(1,"#fbf9f1");
+    layer(base,amp,0,g,p,true);
+    ctx.beginPath();for(let x=0;x<=W;x+=8){const y=edge(x,base,amp,0,p)+6;x?ctx.lineTo(x,y):ctx.moveTo(x,y)}ctx.strokeStyle="rgba(255,255,255,.9)";ctx.lineWidth=3;ctx.stroke();
+    const k=Math.sin(Math.PI*clamp(p*1.3));if(k>.05)drops.forEach(d=>{const x=d.x*W,y=edge(x,base,amp,0,p)-(Math.abs(Math.sin(t*d.v+d.ph))*90+20)*k;ctx.beginPath();ctx.ellipse(x,y,d.s*.8,d.s,0,0,7);ctx.fillStyle="#fffef8";ctx.fill()});
+  }
+  new ResizeObserver(size).observe(cv);size();
+  function frame(now){t+=(now-last)/1000;last=now;draw();if(!still)requestAnimationFrame(frame)}
+  addEventListener("scroll",()=>{heroP=heroProgress();heroUI();if(still)draw()},{passive:true});
+  heroP=heroProgress();heroUI();
+  still?draw():requestAnimationFrame(frame);
+})();
+
+/* ---------- 3D egg tray ---------- */
+(function(){
+  if(!window.THREE)return;let r;try{r=new THREE.WebGLRenderer({antialias:true,alpha:true})}catch(e){return}
+  r.setPixelRatio(Math.min(devicePixelRatio,2));r.outputEncoding=THREE.sRGBEncoding;trayEl.prepend(r.domElement);trayEl.classList.add("live");
+  const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(30,1,.1,100);cam.position.set(0,9.5,10.5);cam.lookAt(0,-.3,0);
+  scene.add(new THREE.HemisphereLight(0xfff8e6,0x8a6a3a,.65));
+  const k=new THREE.DirectionalLight(0xffffff,1.1);k.position.set(-5,9,6);scene.add(k);
+  const fill=new THREE.DirectionalLight(0xffd88a,.45);fill.position.set(6,3,-4);scene.add(fill);
+  const g=new THREE.Group();scene.add(g);
+  const pulp=new THREE.MeshStandardMaterial({color:0xdcc9a6,roughness:1});
+  const base=new THREE.Mesh(new THREE.BoxGeometry(6.4,.35,5.4),pulp);base.position.y=-.55;g.add(base);
+  const rim=new THREE.Mesh(new THREE.BoxGeometry(6.6,.18,5.6),pulp);rim.position.y=-.32;g.add(rim);
+  const post=new THREE.ConeGeometry(.22,.75,8);
+  for(let i=0;i<7;i++)for(let j=0;j<6;j++){const m=new THREE.Mesh(post,pulp);m.position.set(-3+i*1,-.05,-2.5+j*1);g.add(m)}
+  const R=y=>.78*Math.sqrt(Math.max(0,1-y*y))*(1-.13*y);
+  const pts=[];for(let i=0;i<=64;i++){const y=-1+2*i/64;pts.push(new THREE.Vector2(Math.max(R(y),1e-4),y))}
+  const eg=new THREE.LatheGeometry(pts,64);
+  const white=new THREE.MeshStandardMaterial({color:0xf6f1e6,roughness:.5,side:THREE.DoubleSide}),brown=new THREE.MeshStandardMaterial({color:0xae6a37,roughness:.45,side:THREE.DoubleSide});
+  const eggs=[];
+  for(let i=0;i<6;i++)for(let j=0;j<5;j++){const m=new THREE.Mesh(eg,(i*5+j)%4===3?brown:white);m.scale.setScalar(.46);m.position.set(-2.5+i*1,.12,-2+j*1);m.rotation.z=(Math.random()-.5)*.12;m.userData={y:.12,ph:Math.random()*6,pop:0};g.add(m);eggs.push(m)}
+  g.rotation.y=-.55;
+  function fit(){const w=trayEl.clientWidth,h=trayEl.clientHeight;if(!w)return;r.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+  new ResizeObserver(fit).observe(trayEl);fit();
+  let mx=0,my=0;addEventListener("pointermove",e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
+  const ray=new THREE.Raycaster(),ptr=new THREE.Vector2();
+  trayEl.addEventListener("pointerdown",e=>{const b=trayEl.getBoundingClientRect();ptr.set((e.clientX-b.left)/b.width*2-1,-(e.clientY-b.top)/b.height*2+1);ray.setFromCamera(ptr,cam);const h=ray.intersectObjects(eggs)[0];if(h)h.object.userData.pop=1});
+  const clock=new THREE.Clock();let last=0,vis=true;
+  new IntersectionObserver(([en])=>{const was=vis;vis=en.isIntersecting;if(vis&&!was&&!still)requestAnimationFrame(loop)}).observe(trayEl);
+  function loop(){const t=still?0:clock.getElapsedTime(),dt=Math.min(.05,t-last);last=t;
+    eggs.forEach(m=>{const u=m.userData;if(u.pop>0)u.pop=Math.max(0,u.pop-dt*1.4);const hop=u.pop>0?Math.sin((1-u.pop)*Math.PI)*1.6:0;
+      m.position.y=u.y+hop+Math.sin(t*1.3+u.ph)*.015;m.rotation.y=hop*3});
+    g.rotation.y+=((-.55+mx*.6+Math.sin(t*.3)*.15)-g.rotation.y)*.05;g.rotation.x+=((my*.15)-g.rotation.x)*.05;
+    r.render(scene,cam);if(!still&&vis)requestAnimationFrame(loop)}
+  loop();
+})();
+
+/* ---------- grades ---------- */
+const GRADES=[
+  {g:"Medium",w:"45 – 52 g",use:"Hostels, caterers",egg:5.4},
+  {g:"Large",w:"53 – 60 g",use:"Hotels, retail",egg:5.9},
+  {g:"Extra large",w:"61 – 68 g",use:"Bakeries, premium retail",egg:6.4},
+  {g:"Jumbo",w:"69 g +",use:"Bakeries, export",egg:6.9},
+  {g:"Brown · Large",w:"55 – 62 g",use:"Premium retail",egg:7.6}
+];
+const VIEW={tray:[30,"Price per tray"],case:[210,"Price per case"],100:[100,"Price per 100 eggs"]};let view="tray";
+function rows(){const [n,h]=VIEW[view];$("#priceHead").textContent=h;
+  $("#gradeRows").innerHTML=GRADES.map((r,i)=>`<tr><td class="g"><svg class="gicon" viewBox="0 0 100 130" style="width:${[13,16,19,22,17][i]}px" aria-hidden="true"><use href="#egg" fill="${r.g.startsWith('Brown')?'#c27a46':'#efe8d8'}" stroke="rgba(0,0,0,.25)" stroke-width="4"/></svg>${r.g}</td><td class="mono">${r.w}</td><td>${r.use}</td><td class="n">${inr(r.egg*n)}</td></tr>`).join("")}
+rows();
+document.querySelectorAll(".toggle button").forEach(b=>b.onclick=()=>{view=b.dataset.v;document.querySelectorAll(".toggle button").forEach(x=>x.setAttribute("aria-pressed",x===b));rows()});
+
+/* ---------- quote ---------- */
+$("#qGrade").innerHTML=GRADES.map((g,i)=>`<option value="${i}"${i===1?" selected":""}>${g.g}</option>`).join("");
+function est(){const t=+$("#qTrays").value;$("#qTraysLbl").textContent=t.toLocaleString("en-IN");$("#qEst").textContent=inr(t*30*GRADES[+$("#qGrade").value].egg)}
+$("#qTrays").oninput=est;$("#qGrade").onchange=est;est();
+$("#qForm").addEventListener("submit",e=>{e.preventDefault();e.target.hidden=true;$("#qSent").hidden=false});
+document.querySelectorAll(".mini button").forEach(b=>b.onclick=()=>toast(b.dataset.n+" added to cart"));
+
+/* ---------- yolk wave above the quote section: rises as it scrolls in ---------- */
+(function(){const sec=$("#quote"),path=$("#ywPath");let t=0,last=performance.now(),vis=false;
+  function shape(){const r=sec.getBoundingClientRect(),p=clamp((innerHeight-r.top)/(innerHeight*.9));let d="M0 110";
+    for(let x=0;x<=1440;x+=40){const y=110-(14+p*(46+Math.sin(x*.006+t*1.1)*22+Math.sin(x*.017-t*1.6)*10));d+=` L${x} ${y.toFixed(1)}`}
+    path.setAttribute("d",d+" L1440 110Z")}
+  new IntersectionObserver(([e])=>{vis=e.isIntersecting;if(vis&&!still){last=performance.now();requestAnimationFrame(loop)}},{rootMargin:"160px"}).observe(sec);
+  function loop(now){t+=(now-last)/1000;last=now;shape();if(vis)requestAnimationFrame(loop)}
+  addEventListener("scroll",()=>{if(still)shape()},{passive:true});shape();
+})();
+
+</script>
+
+</html>
